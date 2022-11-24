@@ -1,9 +1,5 @@
-console.log("poop");
+import {gameboard} from "../src/gameboard.js"
 
-function sum(a, b) {
-    return a + b;
-  }
-  
 
 function createShips(player) {
   const ships = {
@@ -86,6 +82,6 @@ function createShips(player) {
 }*/
 
 let player1 = new createShips("player1");
-//player1.ships.carrier.hit();
-console.log(player1.ships.carrier.hit());
-export {sum, createShips};
+
+
+export {createShips};

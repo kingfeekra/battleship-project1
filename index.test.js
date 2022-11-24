@@ -1,4 +1,5 @@
-import {sum, createShips} from './src/index.js';
+import {createShips} from './src/index.js';
+import {gameboard} from "./src/gameboard.js"
 
 test("returns player name", () => {
   expect(createShips("player1")).toMatchObject({player: "player1",
@@ -81,5 +82,14 @@ test("run isSunk function and return sunk property as true", () => {
   player1.ships.carrier.hits = 5;
   player1.ships.carrier.isSunk();
   expect(player1.ships.carrier.sunk).toBe(true);
+})
+
+test("return path between two squares on gameboard", () => {
+  let g = new gameboard();
+  g.addVertsAndEdges();
+  let startingSquare = "1,1"; //must be a string
+  let endingSquare = "5,4";
+  //expect(g.vertices).toBe("poop");
+  expect(g.bfs(startingSquare, endingSquare)).toBe("1,1 --> 2,1 --> 2,2")
 })
 
