@@ -1,5 +1,6 @@
 import {createShips} from './src/index.js';
-import {gameboard} from "./src/gameboard.js"
+import {gameboard} from "./src/gameboard.js";
+import {placeCarrier} from "./src/placeShips.js";
 
 test("returns player name", () => {
   expect(createShips("player1")).toMatchObject({player: "player1",
@@ -86,10 +87,33 @@ test("run isSunk function and return sunk property as true", () => {
 
 test("return path between two squares on gameboard", () => {
   let g = new gameboard();
-  g.addVertsAndEdges();
   let startingSquare = "1,1"; //must be a string
-  let endingSquare = "5,4";
+  let endingSquare = "2,2";
+  function addVertsAndEdges() {
+
+    for(let i = 1; i < 11; i++) {
+        for(let j = 1; j < 11; j++) {
+            g.addVertex(`${i},${j}`); //must be added as string, adding as array causes problems
+        }
+    }
+
+    for(let i = 1; i < 11; i++) {
+        for(let j = 1; j < 11; j++) { //coordinates must be added as strings, adding as arrays causes problems
+            g.addEdge(`${i},${j}`,`${i},${j + 1}`);
+            g.addEdge(`${i},${j}`,`${i + 1},${j}`);
+            g.addEdge(`${i},${j}`,`${i},${j - 1}`);
+            g.addEdge(`${i},${j}`,`${i - 1},${j}`);
+            
+        }
+    }
+    
+}
+ addVertsAndEdges(); 
   //expect(g.vertices).toBe("poop");
-  expect(g.bfs(startingSquare, endingSquare)).toBe("1,1 --> 2,1 --> 2,2")
+  expect(g.bfs(startingSquare, endingSquare)).toBe({"ShortestPath": "1,1-->1,2-->2,2"})
+})
+
+test("push coordinates to ship object and return them", () => {
+  expect(placeCarrier()).toBe("1,1-->1,2-->1,3-->1,4-->1,5");
 })
 

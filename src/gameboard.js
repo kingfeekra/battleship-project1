@@ -1,13 +1,15 @@
-class Graph {
+class gameboard {
     constructor() {
         this.vertices = [];
         this.adjacent = {};
         this.edges = 0;
+        this.taken = {}
     }
 
     addVertex(v) {
         this.vertices.push(v);
         this.adjacent[v] = [];
+        this.taken[v] = false;
     }
 
     addEdge(v, w) {
@@ -80,7 +82,7 @@ class Graph {
     }
 }
 
-const g = new Graph();
+const g = new gameboard();
 function addVertsAndEdges() {
 
     for(let i = 1; i < 11; i++) {
@@ -106,4 +108,6 @@ let endingSquare = "5,4";
 
 addVertsAndEdges();
 console.log(`The shortest path from ${startingSquare} to ${endingSquare}:`);
-console.log(g.bfs(startingSquare,endingSquare));
+console.log(g.bfs("1,1","5,4"));
+
+export {g, gameboard, addVertsAndEdges}
