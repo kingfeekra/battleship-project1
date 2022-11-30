@@ -1,5 +1,5 @@
 import {createShips} from './src/index.js';
-import {gameboard} from "./src/gameboard.js";
+import {gameboard, g} from "./src/gameboard.js";
 import {placeCarrier} from "./src/placeShips.js";
 
 test("returns player name", () => {
@@ -114,6 +114,12 @@ test("return path between two squares on gameboard", () => {
 })
 
 test("push coordinates to ship object and return them", () => {
-  expect(placeCarrier()).toBe("1,1-->1,2-->1,3-->1,4-->1,5");
+  expect(placeCarrier("1,1", "1,5", "carrier")).toStrictEqual("carrier");
+
+})
+
+test("ship is attacked and function returns number of hits", () => {
+  g.receiveAttack("1,2");
+  expect(g.receiveAttack("1,7")).toBe("miss");
 })
 

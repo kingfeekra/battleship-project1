@@ -1,7 +1,8 @@
 import {g} from "./gameboard.js"
 
-function placeCarrier() {
-    return g.taken;
+function placeCarrier(start, end, shipName) {
+    g.bfs(start, end, shipName);
+    return g.squares["1,1"];
 }
-placeCarrier();
+
 export {placeCarrier}

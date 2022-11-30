@@ -81,7 +81,7 @@ function createShips(player) {
   return this.hits;
 }*/
 
-let player1 = new createShips("player1");
+
 
 
 export {createShips};

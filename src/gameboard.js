@@ -1,15 +1,19 @@
+import {createShips} from "./index.js";
+
+let player1 = new createShips("player1");
+
 class gameboard {
     constructor() {
         this.vertices = [];
         this.adjacent = {};
         this.edges = 0;
-        this.taken = {}
+        this.squares = {}
     }
 
     addVertex(v) {
         this.vertices.push(v);
         this.adjacent[v] = [];
-        this.taken[v] = false;
+        this.squares[v] = false;
     }
 
     addEdge(v, w) {
@@ -24,9 +28,24 @@ class gameboard {
         this.edges++;
     }
 
-    bfs(root, goal) { //breadth first search algorithm to find shortest path between two squares
+    receiveAttack(coord) {
+        /*if(this.squares[coord] != false && this.squares[coord] != "hit") {
+            player1.ships[this.squares[coord]].hit();
+            this.squares[coord] = "hit";
+        }*/
+        if(Object.keys(player1.ships).includes(this.squares[coord])) {
+            player1.ships[this.squares[coord]].hit();
+            this.squares[coord] = "hit";
+        }
+        else if(this.squares[coord] == false) {
+            this.squares[coord] = "miss";
+            return this.squares[coord];
+        }
+    }
+
+    bfs(root, goal, shipName) { //breadth first search algorithm to find shortest path between two squares
         let adj = this.adjacent;
-        
+
         const queue = [];
         queue.push(root);
 
@@ -52,7 +71,10 @@ class gameboard {
             }
 
             stack.push(root);
-
+            for(let i = 0; i < stack.length; i++) {
+            this.squares[stack[i]] = shipName;
+            }
+            console.log(stack);
             let path = stack.reverse().join('-->'); //join coordinates together to form path
 
             return path;
@@ -104,10 +126,10 @@ function addVertsAndEdges() {
 }
 
 let startingSquare = "1,1"; //must be a string
-let endingSquare = "5,4";
+let endingSquare = "1,5";
 
 addVertsAndEdges();
 console.log(`The shortest path from ${startingSquare} to ${endingSquare}:`);
-console.log(g.bfs("1,1","5,4"));
+//console.log(g.bfs("1,1","1,5"));
 
 export {g, gameboard, addVertsAndEdges}
