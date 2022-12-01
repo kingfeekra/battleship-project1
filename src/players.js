@@ -1,5 +1,6 @@
 import {createShips} from "./index.js";
 import {gameboard, addVertsAndEdges} from "./gameboard.js"
+import {placeShip} from "./placeShips.js"
 
 class player {
     constructor() {
@@ -7,8 +8,14 @@ class player {
         this.gameboard = new gameboard;
     }
 
-    attack(computer) {
-        computer.gameboard.receiveAttack(computer, "1,1");
+    placeShip(start, end, shipName) {
+        computer1.gameboard.bfs(start, end, shipName);
+        return computer1.gameboard.squares["1,1"];
+    }
+
+    attack(coord) {
+       return computer1.gameboard.receiveAttack(computer1, coord);
+        //return computer1.ships.ships.carrier.hits;
     }
 }
 

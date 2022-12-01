@@ -76,12 +76,4 @@ function createShips(player) {
   }
 }
 
-/*createShips.prototype.hit = function() {
-  this.hits++;
-  return this.hits;
-}*/
-
-
-
-
 export {createShips};

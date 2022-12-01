@@ -1,7 +1,6 @@
 import {createShips} from './src/index.js';
 import {gameboard, playerBoard} from "./src/gameboard.js";
-import {placeShip} from "./src/placeShips.js";
-import {player1} from "./src/players.js";
+import {player1, computer1} from "./src/players.js";
 
 test("returns player name", () => {
   expect(createShips("player1")).toMatchObject({player: "player1",
@@ -86,13 +85,13 @@ test("run isSunk function and return sunk property as true", () => {
   expect(player1.ships.carrier.sunk).toBe(true);
 })
 
-test("push coordinates to ship object and return them", () => {
-  expect(placeShip("1,1", "1,5", "carrier")).toStrictEqual("carrier");
-
-})
-
 test("ship is attacked and function returns number of hits", () => {
   player1.gameboard.receiveAttack(player1, "1,2");
   expect(player1.gameboard.receiveAttack(player1, "1,7")).toBe("miss");
+})
+
+test("player attacks computer's ship, return computer hits", () => {
+  player1.placeShip("1,1", "1,5", "carrier");
+  expect(player1.attack("1,1")).toBe("hit");
 })
 

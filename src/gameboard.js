@@ -26,9 +26,10 @@ class gameboard {
     }
 
     receiveAttack(player, coord) {
-        if(Object.keys(player.ships).includes(this.squares[coord])) {
-            player.ships[this.squares[coord]].hit();
+        if(Object.keys(player.ships.ships).includes(this.squares[coord])) {
+            player.ships.ships[this.squares[coord]].hit();
             this.squares[coord] = "hit";
+            return this.squares[coord];
         }
         else if(this.squares[coord] == false) {
             this.squares[coord] = "miss";
@@ -120,11 +121,5 @@ function addVertsAndEdges(board) {
 }
 addVertsAndEdges(playerBoard);
 addVertsAndEdges(computerBoard);
-
-let startingSquare = "1,1"; //must be a string
-let endingSquare = "1,5";
-
-console.log(`The shortest path from ${startingSquare} to ${endingSquare}:`);
-//console.log(g.bfs("1,1","1,5"));
 
 export {playerBoard, computerBoard, gameboard, addVertsAndEdges}
