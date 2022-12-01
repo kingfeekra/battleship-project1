@@ -97,32 +97,34 @@ class gameboard {
     }
 }
 
-const g = new gameboard();
-function addVertsAndEdges() {
+const playerBoard = new gameboard();
+const computerBoard = new gameboard();
+function addVertsAndEdges(board) {
 
     for(let i = 1; i < 11; i++) {
         for(let j = 1; j < 11; j++) {
-            g.addVertex(`${i},${j}`); //must be added as string, adding as array causes problems
+            board.addVertex(`${i},${j}`); //must be added as string, adding as array causes problems
         }
     }
 
     for(let i = 1; i < 11; i++) {
         for(let j = 1; j < 11; j++) { //coordinates must be added as strings, adding as arrays causes problems
-            g.addEdge(`${i},${j}`,`${i},${j + 1}`);
-            g.addEdge(`${i},${j}`,`${i + 1},${j}`);
-            g.addEdge(`${i},${j}`,`${i},${j - 1}`);
-            g.addEdge(`${i},${j}`,`${i - 1},${j}`);
+            board.addEdge(`${i},${j}`,`${i},${j + 1}`);
+            board.addEdge(`${i},${j}`,`${i + 1},${j}`);
+            board.addEdge(`${i},${j}`,`${i},${j - 1}`);
+            board.addEdge(`${i},${j}`,`${i - 1},${j}`);
             
         }
     }
     
 }
+addVertsAndEdges(playerBoard);
+addVertsAndEdges(computerBoard);
 
 let startingSquare = "1,1"; //must be a string
 let endingSquare = "1,5";
 
-addVertsAndEdges();
 console.log(`The shortest path from ${startingSquare} to ${endingSquare}:`);
 //console.log(g.bfs("1,1","1,5"));
 
-export {g, gameboard, addVertsAndEdges}
+export {playerBoard, computerBoard, gameboard, addVertsAndEdges}

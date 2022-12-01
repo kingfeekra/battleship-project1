@@ -1,8 +1,9 @@
-import {g} from "./gameboard.js"
+import {playerBoard} from "./gameboard.js"
+import {player1} from "./players.js"
 
 function placeShip(start, end, shipName) {
-    g.bfs(start, end, shipName);
-    return g.squares["1,1"];
+    playerBoard.bfs(start, end, shipName);
+    return playerBoard.squares["1,1"];
 }
 
 export {placeShip}

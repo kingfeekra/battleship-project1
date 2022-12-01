@@ -1,5 +1,21 @@
 import {createShips} from "./index.js";
-import {} from "./gameboard.js"
+import {gameboard, addVertsAndEdges} from "./gameboard.js"
 
-let player1 = new createShips("player1");
-let computer = new createShips("computer");
+class player {
+    constructor() {
+        this.ships = new createShips("player")
+        this.gameboard = new gameboard;
+    }
+
+    attack(computer) {
+        computer.gameboard.receiveAttack(computer, "1,1");
+    }
+}
+
+let player1 = new player;
+let computer1 = new player;
+
+addVertsAndEdges(player1.gameboard);
+addVertsAndEdges(computer1.gameboard);
+
+export{player1, computer1};
