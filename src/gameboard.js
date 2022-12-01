@@ -1,7 +1,5 @@
 import {createShips} from "./index.js";
 
-let player1 = new createShips("player1");
-
 class gameboard {
     constructor() {
         this.vertices = [];
@@ -24,17 +22,12 @@ class gameboard {
         } //get rid of coordinates not on chessboard
             
         this.adjacent[v].push(w);
-        //this.adjacent[w].push(v);
         this.edges++;
     }
 
-    receiveAttack(coord) {
-        /*if(this.squares[coord] != false && this.squares[coord] != "hit") {
-            player1.ships[this.squares[coord]].hit();
-            this.squares[coord] = "hit";
-        }*/
-        if(Object.keys(player1.ships).includes(this.squares[coord])) {
-            player1.ships[this.squares[coord]].hit();
+    receiveAttack(player, coord) {
+        if(Object.keys(player.ships).includes(this.squares[coord])) {
+            player.ships[this.squares[coord]].hit();
             this.squares[coord] = "hit";
         }
         else if(this.squares[coord] == false) {
