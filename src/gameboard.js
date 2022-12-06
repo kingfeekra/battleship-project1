@@ -16,11 +16,11 @@ class gameboard {
 
     addEdge(v, w) {
         let test = w;
-        if(test.includes(-1) || test.includes(0)
-           || test.includes(9) || test.includes(10)) {
+        if(test.startsWith("0,") || test.endsWith(",0")
+        || test.startsWith("11,") || test.endsWith(",11")) {
             return;
         } //get rid of coordinates not on chessboard
-            
+        //^^^ code doesn't work when i remove this I have no idea why
         this.adjacent[v].push(w);
         this.edges++;
     }
@@ -39,7 +39,6 @@ class gameboard {
 
     bfs(root, goal, shipName) { //breadth first search algorithm to find shortest path between two squares
         let adj = this.adjacent;
-
         const queue = [];
         queue.push(root);
 
@@ -68,7 +67,6 @@ class gameboard {
             for(let i = 0; i < stack.length; i++) {
             this.squares[stack[i]] = shipName;
             }
-            console.log(stack);
             let path = stack.reverse().join('-->'); //join coordinates together to form path
 
             return path;
@@ -98,8 +96,6 @@ class gameboard {
     }
 }
 
-const playerBoard = new gameboard();
-const computerBoard = new gameboard();
 function addVertsAndEdges(board) {
 
     for(let i = 1; i < 11; i++) {
@@ -119,7 +115,5 @@ function addVertsAndEdges(board) {
     }
     
 }
-addVertsAndEdges(playerBoard);
-addVertsAndEdges(computerBoard);
 
-export {playerBoard, computerBoard, gameboard, addVertsAndEdges}
+export {gameboard, addVertsAndEdges}

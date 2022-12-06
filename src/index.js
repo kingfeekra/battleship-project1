@@ -1,5 +1,7 @@
 import {gameboard} from "../src/gameboard.js"
-
+import {player1} from "../src/players.js"
+import "./styles.css";
+import {board} from "./DOMstuff.js"
 
 function createShips(player) {
   const ships = {
@@ -43,7 +45,7 @@ function createShips(player) {
         }
       },
       submarine: {
-        length: 2,
+        length: 3,
         hits: 0,
         sunk: false,
         hit: function() {
@@ -56,7 +58,7 @@ function createShips(player) {
         }
       },
       destroyer: {
-        length: 1,
+        length: 2,
         hits: 0,
         sunk: false,
         hit: function() {
@@ -75,5 +77,6 @@ function createShips(player) {
     ships
   }
 }
-
+board();
+board();
 export {createShips};

@@ -45,7 +45,7 @@ test("returns player name", () => {
       }
     },
     submarine: {
-      length: 2,
+      length: 3,
       hits: 0,
       sunk: false,
       hit: function() {
@@ -58,7 +58,7 @@ test("returns player name", () => {
       }
     },
     destroyer: {
-      length: 1,
+      length: 2,
       hits: 0,
       sunk: false,
       hit: function() {
@@ -85,13 +85,19 @@ test("run isSunk function and return sunk property as true", () => {
   expect(player1.ships.carrier.sunk).toBe(true);
 })
 
-test("ship is attacked and function returns number of hits", () => {
-  player1.gameboard.receiveAttack(player1, "1,2");
-  expect(player1.gameboard.receiveAttack(player1, "1,7")).toBe("miss");
+test("player attacks computer's ship, return computer hits", () => {
+  expect(player1.attack("9,9")).toBe("hit");
 })
 
-test("player attacks computer's ship, return computer hits", () => {
-  player1.placeShip("1,1", "1,5", "carrier");
-  expect(player1.attack("1,1")).toBe("hit");
+test("computer attacks players's ship, return player hits", () => {
+  expect(computer1.attack("9,10")).toBe("hit");
 })
+
+
+
+
+
+
+
+
 
