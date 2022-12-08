@@ -9,7 +9,7 @@ class player {
 
     placeShip(start, end, shipName) {
         player1.gameboard.bfs(start, end, shipName);
-        return player1.gameboard.squares["1,1"];
+        //return player1.gameboard.squares["1,1"];
     }
 
     attack(coord) {
@@ -36,8 +36,8 @@ class computer {
 }
 
 function placeShips(player) {
-    player.placeShip("1,1", "1,9", "carrier");
-    player.placeShip("2,3", "6,3", "battleship");
+    player.placeShip("1,1", "1,5", "carrier");
+    player.placeShip("5,2", "8,2", "battleship");
     player.placeShip("5,4", "5,6", "cruiser");
     player.placeShip("7,7", "7,9", "submarine");
     player.placeShip("9,9", "9,10", "destroyer");

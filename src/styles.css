@@ -70,3 +70,16 @@ center {
 .whitecell {
     background-color: white;
 }
+
+td {
+	font-size: 0;
+}
+
+.takenSquare {
+	background-color: red;
+}
+
+.hitSVG {
+	width: 24px;
+	height: 24px;
+}

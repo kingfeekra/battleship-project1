@@ -86,12 +86,14 @@ test("run isSunk function and return sunk property as true", () => {
 })
 
 test("player attacks computer's ship, return computer hits", () => {
-  expect(player1.attack("9,9")).toBe("hit");
+  expect(player1.attack("1,1")).toBe("hit");
 })
 
 test("computer attacks players's ship, return player hits", () => {
-  expect(computer1.attack("9,10")).toBe("hit");
+  expect(computer1.attack("1,1")).toBe("hit");
 })
+
+
 
 
 

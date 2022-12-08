@@ -1,7 +1,7 @@
 import {gameboard} from "../src/gameboard.js"
-import {player1} from "../src/players.js"
+import {player1, computer1} from "../src/players.js"
 import "./styles.css";
-import {board} from "./DOMstuff.js"
+import {board, headings, squareColors} from "./DOMstuff.js"
 
 function createShips(player) {
   const ships = {
@@ -77,6 +77,10 @@ function createShips(player) {
     ships
   }
 }
-board();
-board();
+board(computer1);
+board(player1);
+headings();
+
+squareColors(player1);
+squareColors(computer1);
 export {createShips};
