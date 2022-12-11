@@ -77,8 +77,8 @@ function createShips(player) {
     ships
   }
 }
-board(computer1);
-board(player1);
+board(computer1, "computerBoard");
+board(player1, "playerBoard");
 headings();
 
 squareColors(player1);

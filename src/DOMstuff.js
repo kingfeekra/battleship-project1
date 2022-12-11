@@ -1,12 +1,13 @@
 import {player1, computer1} from "./players.js"
 import {gameLoop} from "./gameLoop.js"
 
-function board(player) {
+function board(player, className) {
     let playerboard = player;
     let center = document.createElement('center');
 
     // Create a table element
     let ChessTable = document.createElement('table');
+    ChessTable.classList.add(className)
     for (let i = 1; i < 11; i++) {
 
         // Create a row
@@ -28,9 +29,12 @@ function board(player) {
                             let randomSquare = keys[Math.floor(Math.random() * keys.length)]
                             computer1.attack(randomSquare);
                             
-                            let squaresList = document.querySelectorAll("")
-                            for(let i = 0; i < squaresList.length; i++)
-                            squareChange(player1.gameboard.squares[randomSquare], randomSquare)
+                            let squaresList = document.querySelectorAll(".playerBoard > tr > td")
+                            console.log(squaresList);
+                            for(let i = 0; i < squaresList.length; i++) {
+                                if(squaresList[i].textContent == randomSquare)
+                                squareChange(player1.gameboard.squares[randomSquare], squaresList[i])
+                            }
                             console.log(computer1.gameboard.squares)},500);
                     }
                 );
