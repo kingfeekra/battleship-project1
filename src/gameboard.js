@@ -1,6 +1,6 @@
 import {createShips} from "./index.js";
 
-class gameboard {
+class gameboard { //uses graph data structure for adjacent squares
     constructor() {
         this.vertices = [];
         this.adjacent = {};
@@ -20,7 +20,6 @@ class gameboard {
         || test.startsWith("11,") || test.endsWith(",11")) {
             return;
         } //get rid of coordinates not on chessboard
-        //^^^ code doesn't work when i remove this I have no idea why
         this.adjacent[v].push(w);
         this.edges++;
     }

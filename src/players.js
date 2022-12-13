@@ -3,18 +3,16 @@ import {gameboard, addVertsAndEdges} from "./gameboard.js"
 
 class player {
     constructor() {
-        this.ships = new createShips("player")
+        this.ships = new createShips("player"); //give each player a set of ships and a gameboard
         this.gameboard = new gameboard;
     }
 
     placeShip(start, end, shipName) {
         player1.gameboard.bfs(start, end, shipName);
-        //return player1.gameboard.squares["1,1"];
     }
 
     attack(coord) {
-       return computer1.gameboard.receiveAttack(computer1, coord);
-        //return computer1.ships.ships.carrier.hits;
+       return computer1.gameboard.receiveAttack(computer1, coord); //invoke computer receive attack when player attacks
     }
 }
 
@@ -26,12 +24,10 @@ class computer {
 
     placeShip(start, end, shipName) {
         computer1.gameboard.bfs(start, end, shipName);
-        //return computer1.gameboard.squares["1,1"];
     }
 
     attack(coord) {
-       return player1.gameboard.receiveAttack(player1, coord);
-        //return computer1.ships.ships.carrier.hits;
+       return player1.gameboard.receiveAttack(player1, coord); //invoke player receive attack when computer attacks
     }
 }
 

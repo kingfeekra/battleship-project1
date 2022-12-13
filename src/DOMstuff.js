@@ -37,32 +37,12 @@ function board(player, className) {
                     }
                 );
             }
-            // If the sum of cell coordinates is even
-            // then color the cell white
-            if ((i + j) % 2 == 0) {
-
-                // Create a class attribute for all white cells
-                td.setAttribute('class', 'cell whitecell');
-                tr.appendChild(td);
-            }
-
-            // If the sum of cell coordinates is odd then
-            // color the cell black
-            else {
-
-                // Create a class attribute for all black cells
-                td.setAttribute('class', 'cell whitecell');
-
-                // Append the cell to its row
-                tr.appendChild(td);
-            }
+            td.setAttribute('class', 'cell whitecell'); // turn cells white
+            tr.appendChild(td); // Append the cell to its row
         }
-
-        // Append the row
-        ChessTable.appendChild(tr);
+        ChessTable.appendChild(tr); // Append the row
     }
     center.appendChild(ChessTable);
-
     // Modifying table attribute properties
     ChessTable.setAttribute('cellspacing', '0');
     ChessTable.setAttribute('width', '330px');
@@ -70,7 +50,7 @@ function board(player, className) {
     docBody.appendChild(center);
 }
 
-function headings() {
+function headings() { //add headings to document
     let getCenter = document.querySelectorAll("center");
     let h1 = document.createElement("h1");
     h1.textContent = "Battleship"
@@ -86,7 +66,7 @@ function headings() {
     getCenter[1].insertBefore(playerHeading, getCenter[1].children[0]);
 }
 
-function squareColors(player) {
+function squareColors(player) { //add red background to occupied player squares
     let keys = Object.keys(player.gameboard.squares);
     for(let i = 0; i < keys.length; i++) {
         if(player.gameboard.squares[keys[i]] != false &&
@@ -103,7 +83,7 @@ function squareColors(player) {
     }
 }
 
-function squareChange(status, square) {
+function squareChange(status, square) { //add check or X svgs to squares for hits and misses
     if(status == "hit") {
         const hitSVG = document.createElementNS("http://www.w3.org/2000/svg","svg");
         hitSVG.setAttributeNS(null, "viewbox", "0 0 24 24");
@@ -115,10 +95,13 @@ function squareChange(status, square) {
         pathNode.setAttributeNS(null, "d", "M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z");
         
         square.children[0].appendChild(pathNode);
+        if(square.classList.contains("takenSquare")) {
+            square.classList.add("correctSquare");
+        }
     }
     else if(status == "miss") {
         const missSVG = document.createElementNS("http://www.w3.org/2000/svg","svg");
-        missSVG.setAttributeNS(null, "viewbox", "0 0 24 24");
+        missSVG.setAttributeNS(null, "viewbox", "0 0 24, 24");
         missSVG.classList.add("missSVG");
         square.appendChild(missSVG);
 
@@ -130,19 +113,13 @@ function squareChange(status, square) {
     }
 }
 
-/*let randomiseSquare = function(array, value) {
-    array = Object.keys(player1.gameboard.squares);
-    value = array[Math.floor(Math.random() * array.length)];
-}*/
-
-function checkComputerAttack() {
+function checkComputerAttack() { //check if square has already been attacked, if taken attack another
     let keys = Object.keys(player1.gameboard.squares);
     let randomSquare = keys[Math.floor(Math.random() * keys.length)];
     while(player1.gameboard.squares[randomSquare] == "hit" ||
         player1.gameboard.squares[randomSquare] == "miss") {
             randomSquare = keys[Math.floor(Math.random() * keys.length)];
         }
-    console.log(randomSquare);
     computer1.attack(randomSquare);
     
     let squaresList = document.querySelectorAll(".playerBoard > tr > td")
@@ -151,7 +128,6 @@ function checkComputerAttack() {
             squareChange(player1.gameboard.squares[randomSquare], squaresList[i]);
         }
     }
-    console.log(computer1.gameboard.squares)
 }
 
 export {board, headings, squareColors, squareChange};
